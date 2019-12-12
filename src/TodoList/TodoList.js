@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import './style.css'
-import TodoItem from './TodoItem.js'
-import { CSSTransition } from 'react-transition-group'
+import 'antd/dist/antd.css'
+import TodoItem from './TodoItem.js';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class TodoList extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class TodoList extends Component {
     this.setState(
       (prev) => {
         return {
+          list: [...prev.list, 'item'],
           show: !prev.show
         }
       }
@@ -65,9 +67,17 @@ class TodoList extends Component {
     return (
       <Fragment>
         <div>
-          <CSSTransition in={this.state.show} timeout={1000} classNames='test'>
-            <span>v-show实现</span>
-          </CSSTransition>
+          <TransitionGroup>
+            {
+              this.state.list.map((item) => {
+                return (
+                  <CSSTransition  timeout={1000} classNames='test'>
+                    <div>{item}</div>
+                  </CSSTransition>
+                )
+              })
+            }
+          </TransitionGroup>
           <div onClick={ this.showOrHide.bind(this)}>
             show or hide
           </div>
