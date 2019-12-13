@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import 'antd/dist/antd.css'
 import store from '../store/index.js'
 import TodoListUI from './TodoListUI.js'
 

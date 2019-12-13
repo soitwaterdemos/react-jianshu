@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TodoList from './TodoList/TodoList.js';
+import Router from './Router/Router.js'
 
 ReactDOM.render(
-  <TodoList />, 
+  <Router />,
   document.getElementById('root')
 );

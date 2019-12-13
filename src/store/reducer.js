@@ -12,7 +12,7 @@ export default (state = defaultState, action) => {
     return newState
   } else if (action.type === 'add_todoItem') {
     const newState = JSON.parse(JSON.stringify(state))
-    newState.todoList.list.push(newState.todoList.inputValue)
+    newState.todoList.list.push(newState.todoList.inputValue || 'null')
     newState.todoList.inputValue = ''
     return newState
   } else if (action.type === 'remove_todoitem') {
