@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { actionCreators } from './store/index.js';
-// import { actionCreators as loginActionCreators } from '../../pages/login/store'
-
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 import {
   HeaderWrapper,
   Logo,
@@ -20,6 +19,10 @@ import {
   Addition,
   Button
 } from './style';
+
+const scriptElem = document.createElement('script');
+scriptElem.src = 'http://at.alicdn.com/t/font_1565678_emwkr39kcmv.js';
+document.body.appendChild(scriptElem);
 
 class Header extends Component {
 
@@ -47,7 +50,9 @@ class Header extends Component {
 						<SearchInfoSwitch
               onClick={() => handleChangePage(page, totalPage, this.spinIcon)}
             >
-              <i ref={(icon) => { this.spinIcon = icon }} className="iconfont spin">&#xe851;</i>
+              <svg className="icon spin" ref={(icon) => { this.spinIcon = icon }} aria-hidden="true">
+                <use xlinkHref="#icon-xhuanyipi"></use>
+              </svg>
               换一批
 						</SearchInfoSwitch>
           </SearchInfoTitle>
@@ -77,7 +82,9 @@ class Header extends Component {
               <Link to='/login'><NavItem className='right'>登陆</NavItem></Link>
           }
           <NavItem className='right'>
-            <i className="iconfont">&#xe636;</i>
+            {/* <svg className="icon" aria-hidden="true">
+              <use xlinkHref="#icon-xxx"></use>
+            </svg> */}
           </NavItem>
           <SearchWrapper>
             <CSSTransition
@@ -91,16 +98,18 @@ class Header extends Component {
                 onBlur={handleInputBlur}
               ></NavSearch>
             </CSSTransition>
-            <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>
-              &#xe614;
-						</i>
+            <svg className={focused ? 'focused icon zoom search' : 'icon zoom search'} aria-hidden="true">
+              <use xlinkHref="#icon-sousuo"></use>
+            </svg>
             {this.getListArea()}
           </SearchWrapper>
         </Nav>
         <Addition>
           <Link to='/write'>
             <Button className='writting'>
-              <i className="iconfont">&#xe615;</i>
+              <svg className="icon" aria-hidden="true">
+                <use xlinkHref="#icon-xiezi"></use>
+              </svg>
               写文章
 						</Button>
           </Link>
@@ -113,7 +122,6 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // focused: state.getIn(['header', 'focused']),
     focused: state.get('header').get('focused'),
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
@@ -154,7 +162,7 @@ const mapDispathToProps = (dispatch) => {
       }
     },
     logout() {
-      // dispatch(loginActionCreators.logout())
+      dispatch(loginActionCreators.logout())
     }
   }
 }

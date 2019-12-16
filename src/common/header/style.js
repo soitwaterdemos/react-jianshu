@@ -2,10 +2,19 @@ import styled from 'styled-components';
 import logoPic from '../../statics/logo.png';
 
 export const HeaderWrapper = styled.div`
+  min-width: 1200px;
 	z-index: 1;
 	position: relative;
 	height: 56px;
 	border-bottom: 1px solid #f0f0f0;
+
+  /* iconfont */
+	.icon {
+		width: 20px; height: 20px;
+    vertical-align:center;
+    fill: currentColor;
+    overflow: hidden;
+	}
 `;
 
 export const Logo = styled.div`
@@ -44,20 +53,23 @@ export const NavItem = styled.div`
 	}
 `;
 
+/* 搜索框 */
 export const SearchWrapper = styled.div`
 	position: relative;
-	float: left;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	height: 100%;
+	width: auto;
+
 	.zoom {
-		position: absolute;
-		right: 5px;
-		bottom: 5px;
-		width: 30px;
+		position: relative;
+		right: 30px;
 		line-height: 30px;
 		border-radius: 15px;
 		text-align: center;
 		&.focused {
-			background: #777;
-			color: #fff;
+			color: red;
 		}
 	}
 `;
@@ -67,13 +79,12 @@ export const NavSearch = styled.input.attrs({
 })`
 	width: 160px;
 	height: 38px;
-	padding: 0 30px 0 20px;
-	margin-top: 9px;
+	padding: 0 0px 0 20px;
 	margin-left: 20px;
 	box-sizing: border-box;
 	border: none;
 	outline: none;
-	border-radius: 19px;
+	border-radius: 20px;
 	background: #eee;
 	font-size: 14px;
 	color: #666;
@@ -168,5 +179,8 @@ export const Button = styled.div`
 	&.writting {
 		color: #fff;
 		background: #ec6149;
+	}
+	svg {
+		transform: translate(-4px,3px)
 	}
 `
