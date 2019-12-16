@@ -1,9 +1,7 @@
 // import { createStore, applyMiddleware, compose } from 'redux';
-// import rootReducer from './reducer.js';
 // import createSagaMiddleware from 'redux-saga'
+// import rootReducer from './reducer.js';
 // import TodoListSaga from './saga.js'
-
-// // import TodoList from '../TodoList/TodoList.js';
 
 // const sagaMiddleware = createSagaMiddleware()
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -16,15 +14,8 @@
 // export default store
 
 
+import reducer from './reducer.js';
+import * as actionCreators from './actionCreators.js';
+import * as constants from './constants.js';
 
-
-import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import reducer from './reducer';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(
-  applyMiddleware(thunk)
-));
-
-export default store;
+export { reducer, actionCreators, constants };

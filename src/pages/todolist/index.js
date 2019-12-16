@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import store from '../store/index.js'
-import TodoListUI from './TodoListUI.js'
-import { getInitList } from '../store/actionCreators.js'
 import { connect } from 'react-redux'
+import TodoListUI from './TodoListUI.js'
+import { actionCreators } from './store/index.js'
+
 class TodoList extends Component {
-  componentDidMount() {
-    const action = getInitList()
-    store.dispatch(action)
-  }
+
   render () {
+    // window._ccc = this.props
+    // console.log(this.props)
+    // console.log(this.props.inputValue)
     return <TodoListUI 
       inputValue={this.props.inputValue}
       handleInputChange={this.props.handleInputChange}
@@ -23,8 +23,9 @@ class TodoList extends Component {
 const mapStateToProps = (state) => {
   return {
     // 即 组件的 this.props.inputValue === store 的 state.todoList.inputValue
-    inputValue: state.todoList.inputValue,
-    list: state.todoList.list
+    inputValue: state.get('todolist').get('inputValue'),
+    // inputValue: state.get('todoList').get('inputValue'),
+    list: state.get('todolist').get('list')
   }
 }
 // 把 store.dispatch 挂载 到 this.props 上
@@ -32,24 +33,13 @@ const mapDispatchToProps = (dispatch) => {
   // 这里写原来在类组件中定义的方法, 现在类组件中不需要写方法了
   return {
     handleInputChange(e) {
-      const action = {
-        type: 'change_input_value',
-        value: e.target.value
-      }
-      dispatch(action)
+      dispatch(actionCreators.getInputChangeAction(e.target.value))
     },
     handleTodoitemDele(index) {
-      const action = {
-        type: 'remove_todoitem',
-        value: index
-      }
-      store.dispatch(action)
+      dispatch(actionCreators.getTodoitemDeleAction(index))
     },
     handleBtnClick() {
-      const action = {
-        type: 'add_todoItem'
-      }
-      store.dispatch(action)
+      dispatch(actionCreators.getBtnClickAction())
     }
   }
 }
