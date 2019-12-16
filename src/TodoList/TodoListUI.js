@@ -26,7 +26,7 @@ class TodoListUI extends Component {
           renderItem={
             (item, index) =>
               <List.Item
-                key={index} onClick={(index) => { this.props.handleTodoitemDele(index) }}
+                key={index} onClick={() => { this.props.handleTodoitemDele(index) }}
               >
                 [{index}] → {item}
               </List.Item>

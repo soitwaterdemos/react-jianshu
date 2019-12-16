@@ -1,9 +1,16 @@
-import { createStore } from 'redux'
-import reducer from './reducer.js'
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './reducer.js';
+import createSagaMiddleware from 'redux-saga'
+import TodoListSaga from './saga.js'
 
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()  
-);
+// import TodoList from '../TodoList/TodoList.js';
 
-export default store;
+const sagaMiddleware = createSagaMiddleware()
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const enhancer = composeEnhancers(
+  applyMiddleware(sagaMiddleware)
+)
+const store = createStore(rootReducer, enhancer);
+sagaMiddleware.run(TodoListSaga)
+
+export default store
