@@ -4,30 +4,8 @@ import TodoListUI from './TodoListUI.js'
 import { getInitList } from '../store/actionCreators.js'
 import { connect } from 'react-redux'
 class TodoList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = store.getState().todoList
-    // this.handleInputChange = this.handleInputChange.bind(this)
-    // this.handleStoreChange = this.handleStoreChange.bind(this)
-    // this.handleBtnClick = this.handleBtnClick.bind(this)
-    // this.handleTodoitemDele = this.handleTodoitemDele.bind(this)
-    store.subscribe(this.handleStoreChange)
-  }
   componentDidMount() {
     const action = getInitList()
-    store.dispatch(action)
-  }
-  handleTodoitemDele(index) {
-    const action = {
-      type: 'remove_todoitem',
-      value: index
-    }
-    store.dispatch(action)
-  }
-  handleBtnClick() {
-    const action = {
-      type: 'add_todoItem'
-    }
     store.dispatch(action)
   }
   render () {
