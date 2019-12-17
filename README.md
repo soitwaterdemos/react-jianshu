@@ -16,6 +16,7 @@
 ## 注意
 - 登录时,账号密码任意
 - `http://localhost:3000/todolist`是todolist练习项目
+- `/build`下是打包完成的项目代码
 
 ## 地址
 - [在线访问](https://soitwaterdemos.github.io/react-jianshu/build/#/)
