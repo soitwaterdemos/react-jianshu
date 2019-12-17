@@ -31,11 +31,11 @@ export const changePage = (page) => ({
 
 export const getList = () => {
   return (dispatch) => {
-    axios.get('/api/headerList.json').then((res) => {
+    axios.get('http://localhost:3333/api/headerList.json').then((res) => {
       const data = res.data;
       dispatch(changeList(data.data));
     }).catch(() => {
-      console.log('error');
+      console.log('error in /api/headerList.json');
     })
   }
 };

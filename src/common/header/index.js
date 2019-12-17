@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { actionCreators } from './store/index.js';
-import { actionCreators as loginActionCreators } from '../../pages/login/store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store/index.js'
 import {
   HeaderWrapper,
   Logo,
@@ -20,6 +20,7 @@ import {
   Button
 } from './style';
 
+// iconfont 的 svg 的 iconfont.js 文件
 const scriptElem = document.createElement('script');
 scriptElem.src = 'http://at.alicdn.com/t/font_1565678_emwkr39kcmv.js';
 document.body.appendChild(scriptElem);
@@ -28,11 +29,11 @@ class Header extends Component {
 
   getListArea() {
     const { focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
+    // 热门搜索下的“标签
     const newList = list.toJS();
     const pageList = [];
-
     if (newList.length) {
-      for (let i = (page - 1) * 10; i < page * 10; i++) {
+      for (let i = (page - 1) * 10; i < page * 10 && i < newList.length; i++) {
         pageList.push(
           <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
         )
@@ -47,11 +48,9 @@ class Header extends Component {
         >
           <SearchInfoTitle>
             热门搜索
-						<SearchInfoSwitch
-              onClick={() => handleChangePage(page, totalPage, this.spinIcon)}
-            >
+						<SearchInfoSwitch onClick={() => handleChangePage(page, totalPage, this.spinIcon)}>
               <svg className="icon spin" ref={(icon) => { this.spinIcon = icon }} aria-hidden="true">
-                <use xlinkHref="#icon-xhuanyipi"></use>
+                <use xlinkHref="#icon-huanyipi"></use>
               </svg>
               换一批
 						</SearchInfoSwitch>
@@ -79,12 +78,9 @@ class Header extends Component {
           {
             login ?
               <NavItem onClick={logout} className='right'>退出</NavItem> :
-              <Link to='/login'><NavItem className='right'>登陆</NavItem></Link>
+              <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
           }
           <NavItem className='right'>
-            {/* <svg className="icon" aria-hidden="true">
-              <use xlinkHref="#icon-xxx"></use>
-            </svg> */}
           </NavItem>
           <SearchWrapper>
             <CSSTransition

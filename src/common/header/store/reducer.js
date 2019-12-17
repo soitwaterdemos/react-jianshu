@@ -11,6 +11,7 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    // 显示弹出的'热门搜索'框
     case constants.SEARCH_FOCUS:
       return state.set('focused', true);
     case constants.SEARCH_BLUR:

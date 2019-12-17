@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.js';
-// require('./statics/iconfont/iconfont.js');
 import Router from './router/index.js'
 
 import { Provider } from 'react-redux'

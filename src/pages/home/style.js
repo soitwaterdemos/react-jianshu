@@ -88,6 +88,7 @@ export const RecommendItem = styled.div`
 	width: 280px;
 	height: 50px;
 	background: url(${(props) => props.imgUrl});
+	background-repeat: no-repeat;
 	background-size: contain;
 `;
 
